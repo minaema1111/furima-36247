@@ -1,24 +1,65 @@
-# README
+# テーブル設計
+## users テーブル (ユーザー情報)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column             | Type   | Options
+| -------------------|--------|
+| nickname           | string | null: false
+| email              | string | null: false, unique: true
+| encrypted-password | string | null: false
+| last-name          | string | null: false
+| first-name         | string | null: false
+| last-name-kana     | string | null: false
+| first-name-kana    | string | null: false
+| birthday           | date   | null: false
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+- has_many :purchases
+- has_many :items
 
-* System dependencies
+## purchases テーブル (購入記録)
 
-* Configuration
+| Column  | Type       | Option
+| --------|------------| 
+| user    | references | null: false, foreign_key: true
+| item    | references | null: false, foreign_key: true
+| comment | text       |    
 
-* Database creation
+### Association
 
-* Database initialization
+belongs_to :user
+belongs_to :item
+has_one :address
 
-* How to run the test suite
+## items テーブル(商品情報)
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column      | Type    | Option
+| ------------| --------| 
+| name        | string  | null: false
+| description | text    | null: false
+| category    | string  | null: false
+| condition   | string  | null: false
+| charges     | string  | null: false
+| area        | string  | null: false
+| days        | string  | null: false
+| price       | integer | null: false
 
-* Deployment instructions
+### Association
 
-* ...
+- belongs_to :user
+- has_one :purchase
+
+## residences テーブル(発送先住所)
+
+| Column         | Type    | Option
+| ---------------|---------|
+| postal-code    | string  | null: false
+| prefectures    | string  | null: false
+| municipalities | string  | null: false
+| house-number   | string  | null: false
+| building-name  | string  |
+| phone-number   | integer | null: false
+
+### Association
+
+- belongs_to :purchase
