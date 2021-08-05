@@ -23,13 +23,12 @@
 | --------|------------| 
 | user    | references | null: false, foreign_key: true
 | item    | references | null: false, foreign_key: true
-| comment | text       | foreign_key: true
 
 ### Association
 
 belongs_to :user
 belongs_to :item
-has_one :residences
+has_one :residence
 
 ## items テーブル(商品情報)
 
@@ -40,9 +39,9 @@ has_one :residences
 | description  | text       | null: false
 | category_id  | integer    | null: false
 | condition_id | integer    | null: false
-| charges_id   | integer    | null: false
+| charge_id   | integer    | null: false
 | area_id      | integer    | null: false
-| days_id      | integer    | null: false
+| day_id      | integer    | null: false
 | price        | integer    | null: false
 
 ### Association
@@ -52,14 +51,15 @@ has_one :residences
 
 ## residences テーブル(発送先住所)
 
-| Column         | Type    | Option
-| ---------------|---------|
-| postal_code    | string  | null: false
-| area_id        | integer | null: false
-| municipalities | string  | null: false
-| house_number   | string  | null: false
-| building_name  | string  |
-| phone_number   | string  | null: false
+| Column         | Type       | Option
+| ---------------|------------|
+| purchase       | references | null: false, foreign_key: true
+| postal_code    | string     | null: false
+| area_id        | integer    | null: false
+| municipalities | string     | null: false
+| house_number   | string     | null: false
+| building_name  | string     |
+| phone_number   | string     | null: false
 
 ### Association
 
