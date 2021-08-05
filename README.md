@@ -5,11 +5,11 @@
 | -------------------|--------|
 | nickname           | string | null: false
 | email              | string | null: false, unique: true
-| encrypted-password | string | null: false
-| last-name          | string | null: false
-| first-name         | string | null: false
-| last-name-kana     | string | null: false
-| first-name-kana    | string | null: false
+| encrypted_password | string | null: false
+| last_name          | string | null: false
+| first_name         | string | null: false
+| last_name_kana     | string | null: false
+| first_name_kana    | string | null: false
 | birthday           | date   | null: false
 
 ### Association
@@ -33,16 +33,17 @@ has_one :address
 
 ## items テーブル(商品情報)
 
-| Column      | Type    | Option
-| ------------| --------| 
-| name        | string  | null: false
-| description | text    | null: false
-| category    | string  | null: false
-| condition   | string  | null: false
-| charges     | string  | null: false
-| area        | string  | null: false
-| days        | string  | null: false
-| price       | integer | null: false
+| Column       | Type       | Option
+| -------------| --------   | 
+| user         | references | null: false, foreign_key: true
+| name         | string     | null: false
+| description  | text       | null: false
+| category_id  | integer    | null: false
+| condition_id | integer    | null: false
+| charges_id   | integer    | null: false
+| area_id      | integer    | null: false
+| days_id      | integer    | null: false
+| price        | integer    | null: false
 
 ### Association
 
@@ -53,12 +54,12 @@ has_one :address
 
 | Column         | Type    | Option
 | ---------------|---------|
-| postal-code    | string  | null: false
-| prefectures    | string  | null: false
+| postal_code    | string  | null: false
+| area_id        | integer | null: false
 | municipalities | string  | null: false
-| house-number   | string  | null: false
-| building-name  | string  |
-| phone-number   | integer | null: false
+| house_number   | string  | null: false
+| building_name  | string  |
+| phone_number   | string  | null: false
 
 ### Association
 
