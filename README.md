@@ -23,13 +23,13 @@
 | --------|------------| 
 | user    | references | null: false, foreign_key: true
 | item    | references | null: false, foreign_key: true
-| comment | text       |    
+| comment | text       | foreign_key: true
 
 ### Association
 
 belongs_to :user
 belongs_to :item
-has_one :address
+has_one :residences
 
 ## items テーブル(商品情報)
 
