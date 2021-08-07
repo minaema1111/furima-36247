@@ -17,6 +17,10 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user.errors.full_messages).to include("Password can't be blank")
     end
-    it 'last_nameが空では登録できない'
+    it 'last_nameが空では登録できない' do
+      user = User.new(nickname: 'test', email: 'test@example', encrypted_password: '000000', last_name: '')
+      user.valid?
+      expect(user.errors.full_messages).to include("Last name can't be blank")
+end
 end
 end
