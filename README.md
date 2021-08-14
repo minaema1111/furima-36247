@@ -40,8 +40,8 @@ has_one :residence
 | category_id  | integer    | null: false
 | condition_id | integer    | null: false
 | charge_id   | integer    | null: false
-| area_id      | integer    | null: false
-| day_id      | integer    | null: false
+| prefecture_id      | integer    | null: false
+| scheduled_delivery_id      | integer    | null: false
 | price        | integer    | null: false
 
 ### Association
@@ -55,7 +55,7 @@ has_one :residence
 | ---------------|------------|
 | purchase       | references | null: false, foreign_key: true
 | postal_code    | string     | null: false
-| area_id        | integer    | null: false
+| prefecture_id        | integer    | null: false
 | municipalities | string     | null: false
 | house_number   | string     | null: false
 | building_name  | string     |
