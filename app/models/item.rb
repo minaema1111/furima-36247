@@ -7,17 +7,20 @@ class Item < ApplicationRecord
   belongs_to :scheduled_delivery
   has_one_attached :image
 
-         validates :description, presence: true
-         validates :name, presence: true
-         validates :category_id, presence: true
-         validates :condition_id, presence: true
-         validates :charge_id, presence: true
-         validates :scheduled_delivery_id, presence: true
-         validates :prefecture_id, presence: true
-         validates :price, presence: true, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }
-         validates :image, presence: true
+  with_options presence: true do
+         validates :description
+         validates :name
+         validates :category_id
+         validates :condition_id
+         validates :charge_id
+         validates :scheduled_delivery_id
+         validates :prefecture_id
+         validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }, numericality: { only_integer: true, greater_than: 300, less_than: 9999999 }
+         validates :image
+  end
+
          belongs_to :user
         #  has_one :purchase
-         validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
+         validates :category_id, :condition_id, :charge_id, :scheduled_delivery_id, :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
 
 end
