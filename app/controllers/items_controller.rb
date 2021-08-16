@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order("created_at DESC")
-  end
+    end
 
   def new
     @item = Item.new
@@ -17,6 +17,10 @@ class ItemsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 end
 
