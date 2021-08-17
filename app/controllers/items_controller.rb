@@ -44,7 +44,7 @@ end
 def ensure_correct_user
   @item = Item.find(params[:id])
    unless @item.user == current_user
-   redirect_to new_user_session_path
+   redirect_to root_path
  end
 
 def set_item
