@@ -5,11 +5,10 @@ class ItemsController < ApplicationController
   
   def index
     @items = Item.order("created_at DESC")
-    end
+  end
 
   def new
     @item = Item.new
-
   end
 
   def create
@@ -32,9 +31,8 @@ class ItemsController < ApplicationController
       redirect_to item_path 
     else
       render :edit
+    end
   end
-end
-end
 
 private
 
