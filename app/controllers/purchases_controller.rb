@@ -1,6 +1,5 @@
 class PurchasesController < ApplicationController
-  before_action :move_to_index, only: [:index]
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, only: [:index]
   before_action :sold_out_item, only: [:index]
 
   def index
@@ -31,10 +30,6 @@ class PurchasesController < ApplicationController
 
   def sold_out_item
     redirect_to root_path if @item_purchase.present?
-  end
-
-  def move_to_index
-    redirect_to new_user_session_path unless user_signed_in?
   end
 
   def pay_item
