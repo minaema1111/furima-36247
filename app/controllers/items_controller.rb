@@ -4,8 +4,6 @@ class ItemsController < ApplicationController
   before_action :sold_out_item, only: [:edit]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
-
-
   def index
     @items = Item.order('created_at DESC')
   end
@@ -38,10 +36,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-    redirect_to root_path
+    redirect_to root_path if @item.destroy
   end
-end
 
   private
 
@@ -59,10 +55,6 @@ end
   end
 
   def sold_out_item
-    if current_user.id != @item.user_id||@item.purchase.present?
-      redirect_to root_path
-
-    end
-end
-
+    redirect_to root_path if current_user.id != @item.user_id || @item.purchase.present?
+  end
 end
