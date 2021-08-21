@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :sold_out_item, only: [:edit, :update]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
@@ -35,10 +36,8 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if @item.destroy
-    redirect_to root_path
+    redirect_to root_path if @item.destroy
   end
-end
 
   private
 
@@ -53,5 +52,9 @@ end
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def sold_out_item
+    redirect_to root_path if current_user.id != @item.user_id || @item.purchase.present?
   end
 end
