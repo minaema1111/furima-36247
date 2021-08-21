@@ -22,7 +22,6 @@ class Item < ApplicationRecord
   end
 
   belongs_to :user
-  #  has_one :purchase
   validates :category_id, :condition_id, :charge_id, :scheduled_delivery_id, :prefecture_id,
             numericality: { other_than: 1, message: "can't be blank" }
 end
