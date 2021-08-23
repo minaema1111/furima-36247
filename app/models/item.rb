@@ -17,7 +17,7 @@ class Item < ApplicationRecord
     validates :scheduled_delivery_id
     validates :prefecture_id
     validates :price, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' },
-                      numericality: { only_integer: true, greater_than: 300, less_than: 9_999_999 }
+                      numericality: { only_integer: true, greater_than: 299, less_than: 10000000 }
     validates :image
   end
 
